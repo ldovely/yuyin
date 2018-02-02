@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>语音识别</title>
+</head>
+<body>
+    <div>
+        <br/>
+    </div>
+    <div class="style:margin-left=200px;">
+        <span>原始音频文件：</span>
+        <audio controls="controls" src="/20180202_101338.wav">wav</audio>
+    </div>
+    <div>
+        <br/>
+    </div>
+    <div>
+        <input type="button" value="识别文字" onclick="shiBie()"/>
+    </div>
+    <div>
+        <br/>
+    </div>
+    <div>
+        <span>文字内容：</span>
+        <span id="text"></span>
+    </div>
+</body>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script>
+    function shiBie() {
+        $.ajax({
+            url:"/yuYinShiBie",
+            type:"get",
+            dataType:"text",
+            success:function(text){
+                console.log(text);
+                $("#text").text(text);
+            }
+        });
+    }
+</script>
+</html>
